@@ -1,17 +1,13 @@
 package com.ufrn.eaj.demo;
 
-import com.ufrn.eaj.demo.domain.Categoria;
-import com.ufrn.eaj.demo.domain.Cidade;
-import com.ufrn.eaj.demo.domain.Estado;
-import com.ufrn.eaj.demo.domain.Produto;
-import com.ufrn.eaj.demo.repositories.CategoriaRepository;
-import com.ufrn.eaj.demo.repositories.CidadeRepository;
-import com.ufrn.eaj.demo.repositories.EstadoRepository;
-import com.ufrn.eaj.demo.repositories.ProdutoRepository;
+import com.ufrn.eaj.demo.domain.*;
+import com.ufrn.eaj.demo.domain.enums.TipoCliente;
+import com.ufrn.eaj.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import sun.rmi.runtime.NewThreadAction;
 
 import java.util.Arrays;
 
@@ -25,10 +21,16 @@ public class ProjetoBackendApplication implements CommandLineRunner {
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    EstadoRepository estadoRepository;
+    private EstadoRepository estadoRepository;
 
     @Autowired
-    CidadeRepository cidadeRepository;
+    private CidadeRepository cidadeRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public static void main(String[] args) {
 
@@ -67,6 +69,18 @@ public class ProjetoBackendApplication implements CommandLineRunner {
 
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+        Cliente cli1 = new Cliente(null, "Francelino", "fmarcilio1989@gmail.com", "19122233344", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("99999999", "98989696"));
+
+        Endereco e1 = new Endereco(null, "Rua jundiai", "500", "suporteTI", "informatica", "59060555", cli1, c1);
+        Endereco e2 = new Endereco(null, "rua da informatica", "656", "sala de aula", "predio de info", "590605487", cli1, c3);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+        clienteRepository.saveAll(Arrays.asList(cli1));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
 
 
     }
