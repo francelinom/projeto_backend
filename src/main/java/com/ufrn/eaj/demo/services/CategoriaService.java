@@ -2,8 +2,10 @@ package com.ufrn.eaj.demo.services;
 
 import com.ufrn.eaj.demo.domain.Categoria;
 import com.ufrn.eaj.demo.repositories.CategoriaRepository;
+import com.ufrn.eaj.demo.services.exceptions.DataIntegrityException;
 import com.ufrn.eaj.demo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,6 +30,15 @@ public class CategoriaService {
     public Categoria update(Categoria obj){
         find(obj.getId());
         return repo.save(obj);
+    }
+
+    public void delete(Integer id){
+        find(id);
+        try {
+            repo.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataIntegrityException("Não é possível excluir uma categoria que possui produto");
+        }
     }
 
 }
