@@ -1,6 +1,7 @@
 package com.ufrn.eaj.demo.services;
 
 import com.ufrn.eaj.demo.domain.Categoria;
+import com.ufrn.eaj.demo.dto.CategoriaDTO;
 import com.ufrn.eaj.demo.repositories.CategoriaRepository;
 import com.ufrn.eaj.demo.services.exceptions.DataIntegrityException;
 import com.ufrn.eaj.demo.services.exceptions.ObjectNotFoundException;
@@ -52,6 +53,10 @@ public class CategoriaService {
     public Page<Categoria>findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 
 }
