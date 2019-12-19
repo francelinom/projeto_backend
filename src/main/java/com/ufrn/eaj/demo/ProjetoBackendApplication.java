@@ -52,6 +52,12 @@ public class ProjetoBackendApplication implements CommandLineRunner {
     public void run(String... args)throws Exception{
         Categoria cat1 = new Categoria(null, "Informática");
         Categoria cat2 = new Categoria(null, "Escritório");
+        Categoria cat3 = new Categoria(null, "cama mesa e banho");
+        Categoria cat4 = new Categoria(null, "eletronica");
+        Categoria cat5 = new Categoria(null, "perfumaria");
+        Categoria cat6 = new Categoria(null, "papelaria");
+        Categoria cat7 = new Categoria(null, "moveis");
+
 
         Produto p1 = new Produto(null, "notebook", (float)2850.00);
         Produto p2 = new Produto(null, "Impressora", (float)800.00);
@@ -65,7 +71,7 @@ public class ProjetoBackendApplication implements CommandLineRunner {
         p3.getCategorias().addAll(Arrays.asList(cat1));
 
 
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
         Estado est1 = new Estado(null, "Minas Gerais");
