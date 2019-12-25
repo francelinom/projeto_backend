@@ -42,7 +42,7 @@ public class ClienteService {
         obj.setId(null);
         obj = repo.save(obj);
         enderecoRepository.saveAll(obj.getEnderecos());
-        return repo.save(obj);
+        return obj;
     }
 
     public Cliente update(Cliente obj){
