@@ -14,7 +14,7 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private Float preco;
+    private Double preco;
 
     @JsonIgnore
     @ManyToMany
@@ -34,7 +34,7 @@ public class Produto implements Serializable {
 
     }
 
-    public Produto(Integer id, String nome, Float preco) {
+    public Produto(Integer id, String nome, Double preco) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
@@ -65,11 +65,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public Float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(Float preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 

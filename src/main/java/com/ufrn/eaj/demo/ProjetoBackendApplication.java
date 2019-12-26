@@ -59,17 +59,17 @@ public class ProjetoBackendApplication implements CommandLineRunner {
         Categoria cat7 = new Categoria(null, "Perfumaria");
 
 
-        Produto p1 = new Produto(null, "notebook", (float)2850.00);
-        Produto p2 = new Produto(null, "Impressora", (float)800.00);
-        Produto p3 = new Produto(null, "mouse", (float)80.00);
-        Produto p4 = new Produto(null, "Mesa de escritorio", (float)300.00);
-        Produto p5 = new Produto(null, "Toalha", (float)50.00);
-        Produto p6 = new Produto(null, "colcha", (float)200.00);
-        Produto p7 = new Produto(null, "TV true color", (float)1200.00);
-        Produto p8 = new Produto(null, "Roçadeira", (float)800.00);
-        Produto p9 = new Produto(null, "Abajour", (float)100.00);
-        Produto p10 = new Produto(null, "Pendente", (float)180.00);
-        Produto p11 = new Produto(null, "Shampoo", (float)90.00);
+        Produto p1 = new Produto(null, "notebook", 2850.00);
+        Produto p2 = new Produto(null, "Impressora", 800.00);
+        Produto p3 = new Produto(null, "mouse", 80.00);
+        Produto p4 = new Produto(null, "Mesa de escritorio", 300.00);
+        Produto p5 = new Produto(null, "Toalha", 50.00);
+        Produto p6 = new Produto(null, "colcha", 200.00);
+        Produto p7 = new Produto(null, "TV true color", 1200.00);
+        Produto p8 = new Produto(null, "Roçadeira", 800.00);
+        Produto p9 = new Produto(null, "Abajour", 100.00);
+        Produto p10 = new Produto(null, "Pendente", 180.00);
+        Produto p11 = new Produto(null, "Shampoo", 90.00);
 
 
         cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));

@@ -9,7 +9,7 @@ public class ProdutoDTO implements Serializable {
 
     private Integer id;
     private String nome;
-    private Float preco;
+    private Double preco;
 
     public ProdutoDTO(){
 
@@ -37,11 +37,11 @@ public class ProdutoDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(Float preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 }
