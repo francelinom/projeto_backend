@@ -1,6 +1,8 @@
 package com.ufrn.eaj.demo.config;
 
 import com.ufrn.eaj.demo.services.DBService;
+import com.ufrn.eaj.demo.services.EmailService;
+import com.ufrn.eaj.demo.services.SmtpEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +30,12 @@ public class DevConfig {
             return false;
         }
 
-
         dbService.instantiateTestDatabase();
         return true;
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new SmtpEmailService();
     }
 }
