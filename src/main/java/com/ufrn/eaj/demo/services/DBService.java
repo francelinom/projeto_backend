@@ -2,6 +2,7 @@ package com.ufrn.eaj.demo.services;
 
 import com.ufrn.eaj.demo.domain.*;
 import com.ufrn.eaj.demo.domain.enums.EstadoPagamento;
+import com.ufrn.eaj.demo.domain.enums.Perfil;
 import com.ufrn.eaj.demo.domain.enums.TipoCliente;
 import com.ufrn.eaj.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,16 +107,23 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-        Cliente cli1 = new Cliente(null, "Francelino", "fmarcilio1989@gmail.com", "19122233344", TipoCliente.PESSOAFISICA, pe.encode("1234"));
+        Cliente cli1 = new Cliente(null, "Francelino", "fmarcilio1989@gmail.com", "94086379090", TipoCliente.PESSOAFISICA, pe.encode("1234"));
         cli1.getTelefones().addAll(Arrays.asList("99999999", "98989696"));
 
+        Cliente cli2 = new Cliente(null, "Marcilio", "marcilio1989@gmail.com", "62261339020", TipoCliente.PESSOAFISICA, pe.encode("1234"));
+        cli2.getTelefones().addAll(Arrays.asList("88888888", "77777777"));
+        cli2.addPerfil(Perfil.ADMIN);
+
+
         Endereco e1 = new Endereco(null, "Rua jundiai", "500", "suporteTI", "informatica", "59060555", cli1, c1);
-        Endereco e2 = new Endereco(null, "rua da informatica", "656", "sala de aula", "predio de info", "590605487", cli1, c3);
+        Endereco e2 = new Endereco(null, "rua da informatica", "656", "sala de aula", "predio de info", "590605487", cli1, c2);
+        Endereco e3 = new Endereco(null, "rua da flor", "67776", "casa", "boa ideia", "590605487", cli2, c2);
 
         cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e3));
 
-        clienteRepository.saveAll(Arrays.asList(cli1));
-        enderecoRepository.saveAll(Arrays.asList(e1, e2));
+        clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
