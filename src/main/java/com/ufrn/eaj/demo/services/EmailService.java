@@ -1,5 +1,6 @@
 package com.ufrn.eaj.demo.services;
 
+import com.ufrn.eaj.demo.domain.Cliente;
 import com.ufrn.eaj.demo.domain.Pedido;
 import org.springframework.mail.SimpleMailMessage;
 
@@ -14,6 +15,8 @@ public interface EmailService {
     void sendOrderConfirmationHtmlEmail(Pedido obj);
 
     void sendHtmlEmail(MimeMessage msg);
+
+    void sendNewPasswordEmail(Cliente cliente, String newPass);
 
 
 }
