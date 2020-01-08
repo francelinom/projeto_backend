@@ -1,13 +1,15 @@
 package com.ufrn.eaj.demo.services;
 
-import com.ufrn.eaj.demo.domain.Cliente;
-import com.ufrn.eaj.demo.domain.ItemPedido;
-import com.ufrn.eaj.demo.domain.PagamentoComBoleto;
-import com.ufrn.eaj.demo.domain.Pedido;
+import com.ufrn.eaj.demo.domain.*;
 import com.ufrn.eaj.demo.domain.enums.EstadoPagamento;
 import com.ufrn.eaj.demo.repositories.*;
+import com.ufrn.eaj.demo.security.UserSS;
+import com.ufrn.eaj.demo.services.exceptions.AuthorizationException;
 import com.ufrn.eaj.demo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,5 +72,15 @@ public class PedidoService {
         itemPedidoRepository.saveAll(obj.getItens());
         emailService.sendOrderConfirmationHtmlEmail(obj);
         return obj;
+    }
+
+    public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        UserSS user = UserService.authenticated();
+        if (user == null){
+            throw new AuthorizationException("Acesso Negado");
+        }
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        Cliente cliente = clienteService.find(user.getId());
+        return repo.findByCliente(cliente, pageRequest);
     }
 }
