@@ -4,11 +4,14 @@ import com.ufrn.eaj.demo.domain.Categoria;
 import com.ufrn.eaj.demo.domain.Cidade;
 import com.ufrn.eaj.demo.domain.Cliente;
 import com.ufrn.eaj.demo.domain.Endereco;
+import com.ufrn.eaj.demo.domain.enums.Perfil;
 import com.ufrn.eaj.demo.domain.enums.TipoCliente;
 import com.ufrn.eaj.demo.dto.ClienteDTO;
 import com.ufrn.eaj.demo.dto.ClienteNewDTO;
 import com.ufrn.eaj.demo.repositories.ClienteRepository;
 import com.ufrn.eaj.demo.repositories.EnderecoRepository;
+import com.ufrn.eaj.demo.security.UserSS;
+import com.ufrn.eaj.demo.services.exceptions.AuthorizationException;
 import com.ufrn.eaj.demo.services.exceptions.DataIntegrityException;
 import com.ufrn.eaj.demo.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,12 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
 
     public Cliente find(Integer id){
+
+        UserSS user = UserService.authenticated();
+        if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Acesso Negado");
+        }
+
         Optional<Cliente>obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", tipo: " + Cliente.class.getName()));
