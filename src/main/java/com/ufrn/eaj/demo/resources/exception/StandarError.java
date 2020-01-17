@@ -5,18 +5,30 @@ import java.io.Serializable;
 public class StandarError implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Long timestamp;
     private Integer status;
-    private String msg;
-    private Long timeStamp;
+    private String error;
+    private String mesasge;
+    private String path;
 
-    public StandarError(Integer status, String msg, Long timeStamp) {
-        this.status = status;
-        this.msg = msg;
-        this.timeStamp = timeStamp;
+    public StandarError(){
+        
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public StandarError(Long timestamp, Integer status, String error, String mesasge, String path) {
+        this.timestamp = timestamp;
+        this.status = status;
+        this.error = error;
+        this.mesasge = mesasge;
+        this.path = path;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Integer getStatus() {
@@ -27,19 +39,27 @@ public class StandarError implements Serializable {
         this.status = status;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getError() {
+        return error;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setError(String error) {
+        this.error = error;
     }
 
-    public Long getTimeStamp() {
-        return timeStamp;
+    public String getMesasge() {
+        return mesasge;
     }
 
-    public void setTimeStamp(Long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setMesasge(String mesasge) {
+        this.mesasge = mesasge;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }
