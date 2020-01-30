@@ -17,8 +17,6 @@ import java.util.Arrays;
 @SpringBootApplication
 public class ProjetoBackendApplication implements CommandLineRunner {
 
-    @Autowired
-    private S3Service s3Service;
 
     public static void main(String[] args) {
 
@@ -27,7 +25,7 @@ public class ProjetoBackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws Exception{
-        s3Service.uploadFile("C:\\Users\\marci\\Pictures\\mengao.jpg");
+
     }
 
 
