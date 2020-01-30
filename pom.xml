@@ -85,6 +85,20 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.600</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -135,5 +149,7 @@
             </plugin>
         </plugins>
     </build>
+
+
 
 </project>

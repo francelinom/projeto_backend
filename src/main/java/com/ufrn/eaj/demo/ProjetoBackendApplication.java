@@ -4,6 +4,7 @@ import com.ufrn.eaj.demo.domain.*;
 import com.ufrn.eaj.demo.domain.enums.EstadoPagamento;
 import com.ufrn.eaj.demo.domain.enums.TipoCliente;
 import com.ufrn.eaj.demo.repositories.*;
+import com.ufrn.eaj.demo.services.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,9 @@ import java.util.Arrays;
 @SpringBootApplication
 public class ProjetoBackendApplication implements CommandLineRunner {
 
+    @Autowired
+    private S3Service s3Service;
+
     public static void main(String[] args) {
 
         SpringApplication.run(ProjetoBackendApplication.class, args);
@@ -23,7 +27,7 @@ public class ProjetoBackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)throws Exception{
-
+        s3Service.uploadFile("C:\\Users\\marci\\Pictures\\mengao.jpg");
     }
 
 
