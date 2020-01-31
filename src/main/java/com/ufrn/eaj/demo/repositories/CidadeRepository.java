@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Integer> {
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Query("SELECT obj FROM Cidade obj WHERE obj.estado.id = :estadoId ORDER BY obj.nome")
     public List<Cidade>findCidades(@Param("estadoId") Integer estados_id);
 }
